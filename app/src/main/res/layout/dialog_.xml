@@ -7,17 +7,21 @@
 
     <Button
         android:id="@+id/delete"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_alignParentLeft="true"
         android:background="@color/accent"
         android:text="delete"
-        android:layout_alignParentLeft="true"
-        android:layout_width="150dp"
-        android:layout_height="50dp"/>
+        android:textColor="#EFEFEF" />
 
     <Button
         android:id="@+id/edit"
-        android:text="edit"
+        android:layout_width="150dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:textColor="#FFFFFF"
+        android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:background="@color/accent"
-        android:layout_width="150dp"
-        android:layout_height="50dp"/>
+        android:text="edit" />
 </RelativeLayout>

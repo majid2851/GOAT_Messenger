@@ -19,10 +19,10 @@ class ChatMessageAdapter () : RecyclerView.Adapter<ChatMessageAdapter.MyViewHold
     var onclicklistener:OnClickListener?=null
     //lateinit var binding:PatternCoinSummeryBinding;
 
-    constructor(items: List<Message>?, context: Context,onClickListener: OnClickListener) : this()
+    constructor(items: List<Message>?, context: Context,onclick: OnClickListener) : this()
     {
         this.context=context;
-        this.onclicklistener=onclicklistener
+        this.onclicklistener=onclick
         this.items=items
     }
 
@@ -53,7 +53,7 @@ class ChatMessageAdapter () : RecyclerView.Adapter<ChatMessageAdapter.MyViewHold
                 }
 
 
-                holder.itemView.setOnClickListener {
+                holder.binding.message.setOnClickListener {
                     if (model != null) {
                         onclicklistener?.onLongClick(model)
                     }
