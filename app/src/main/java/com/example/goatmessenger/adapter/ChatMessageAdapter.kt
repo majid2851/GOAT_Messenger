@@ -54,7 +54,9 @@ class ChatMessageAdapter () : RecyclerView.Adapter<ChatMessageAdapter.MyViewHold
 
 
                 holder.itemView.setOnClickListener {
-                    onclicklistener?.onLongClick(model!!.id)
+                    if (model != null) {
+                        onclicklistener?.onLongClick(model)
+                    }
 
                 }
 
@@ -76,7 +78,7 @@ class ChatMessageAdapter () : RecyclerView.Adapter<ChatMessageAdapter.MyViewHold
         }
     }
      interface OnClickListener{
-        fun onLongClick(id:Long)
+        fun onLongClick(model:Message)
     }
 
 }

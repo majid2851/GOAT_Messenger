@@ -66,8 +66,8 @@ class ChatFragment : Fragment() {
         Log.i("mag2851",viewModel.getMessages().value.toString())
 
        adapter=ChatMessageAdapter(viewModel.getMessages().value,requireActivity(),object : ChatMessageAdapter.OnClickListener {
-           override fun onLongClick(id: Long) {
-                showDialog(id)
+           override fun onLongClick(msg:Message) {
+                showDialog(msg)
 
            }
        })
@@ -111,7 +111,7 @@ class ChatFragment : Fragment() {
         return binding?.root
     }
 
-    private fun showDialog(id: Long)
+    private fun showDialog(msg:Message)
     {
         val builder = AlertDialog.Builder(requireActivity())
         val v: View = LayoutInflater.from(requireActivity()).inflate(R.layout.dialog_, null)
@@ -123,7 +123,12 @@ class ChatFragment : Fragment() {
         val dialog = builder.create()
         dialog.show()
         tvDelete.setOnClickListener {
+            viewModel.deleteMessage(msg)
 
+
+            viewModel.getMessages().observe(requireActivity(), Observer {
+                adapter.notifyDataSetChanged()
+            })
 
 
             dialog.dismiss()

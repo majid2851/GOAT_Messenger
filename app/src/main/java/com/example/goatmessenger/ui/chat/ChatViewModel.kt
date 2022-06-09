@@ -31,4 +31,8 @@ class ChatViewModel @JvmOverloads constructor(
         repository.addMessages(msg)
     }
 
+    fun deleteMessage(msg: Message) {
+        repository.deleteMessage(msg)
+    }
+
 }
