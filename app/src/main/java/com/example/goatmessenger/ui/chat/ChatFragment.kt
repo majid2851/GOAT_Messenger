@@ -134,7 +134,7 @@ class ChatFragment : Fragment() {
             dialog.dismiss()
         }
         tvEdit.setOnClickListener {
-            Toast.makeText(requireActivity(),"وقت نکردم درست کنم",Toast.LENGTH_LONG).show()
+            Toast.makeText(context,"وقت نکردم درست کنم",Toast.LENGTH_LONG).show()
 
 
 
