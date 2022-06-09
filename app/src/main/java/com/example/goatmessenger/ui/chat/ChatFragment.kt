@@ -6,7 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,10 +18,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.goatmessenger.R
 import com.example.goatmessenger.adapter.ChatMessageAdapter
-import com.example.goatmessenger.data.Contact
 import com.example.goatmessenger.data.Message
 import com.example.goatmessenger.databinding.ChatFragmentBinding
 import com.example.goatmessenger.getNavigationController
+
 
 /**
  * The chat screen.
@@ -61,11 +65,13 @@ class ChatFragment : Fragment() {
 
         Log.i("mag2851",viewModel.getMessages().value.toString())
 
-       adapter=ChatMessageAdapter(viewModel.getMessages().value,requireActivity(),
-           ChatMessageAdapter.OnClickListener {
+       adapter=ChatMessageAdapter(viewModel.getMessages().value,requireActivity(),object : ChatMessageAdapter.OnClickListener {
+           override fun onLongClick(id: Long) {
+                showDialog(id)
 
-           })
-          binding!!.messages.adapter=adapter
+           }
+       })
+        binding!!.messages.adapter=adapter
 
 
 
@@ -103,6 +109,30 @@ class ChatFragment : Fragment() {
 
 
         return binding?.root
+    }
+
+    private fun showDialog(id: Long)
+    {
+        val builder = AlertDialog.Builder(requireActivity())
+        val v: View = LayoutInflater.from(requireActivity()).inflate(R.layout.dialog_, null)
+        val tvDelete: Button
+        val tvEdit: Button
+        tvDelete = v.findViewById(R.id.delete)
+        tvEdit = v.findViewById(R.id.edit)
+        builder.setView(v)
+        val dialog = builder.create()
+        dialog.show()
+        tvDelete.setOnClickListener {
+
+
+
+            dialog.dismiss()
+        }
+        tvEdit.setOnClickListener {
+
+        }
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

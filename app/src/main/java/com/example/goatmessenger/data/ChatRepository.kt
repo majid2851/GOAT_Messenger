@@ -13,6 +13,7 @@ interface ChatRepository {
     fun findContact(id: Long): LiveData<Contact?>
     fun getMessages(): MutableLiveData<List<Message>>
     fun addMessages(msg:Message)
+    fun deleteMessage(id:Long)
     // Add your methods definition here
 }
 
@@ -73,6 +74,10 @@ class DefaultChatRepository internal constructor() : ChatRepository
 
     override fun addMessages(msg: Message) {
         messages.add(msg)
+    }
+
+    override fun deleteMessage(id: Long) {
+
     }
 
 
